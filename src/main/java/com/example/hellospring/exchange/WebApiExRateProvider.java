@@ -1,4 +1,4 @@
-package com.example.hellospring;
+package com.example.hellospring.exchange;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
@@ -26,6 +26,10 @@ public class WebApiExRateProvider implements ExRateProvider {
 		ObjectMapper mapper = new ObjectMapper();
 		ExRateData data = mapper.readValue(response, ExRateData.class);
 
+		System.out.println();
+		System.out.println("API ExRate: " + data.rates().get("KRW"));
+		System.out.println();
+		
 		return data.rates().get("KRW");
 	}
 

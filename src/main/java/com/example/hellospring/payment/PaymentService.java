@@ -1,5 +1,6 @@
-package com.example.hellospring;
+package com.example.hellospring.payment;
 
+import com.example.hellospring.exchange.ExRateProvider;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

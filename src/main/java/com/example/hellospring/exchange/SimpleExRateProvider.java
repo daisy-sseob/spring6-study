@@ -1,6 +1,4 @@
-package com.example.hellospring;
-
-import org.springframework.stereotype.Component;
+package com.example.hellospring.exchange;
 
 import java.math.BigDecimal;
 
