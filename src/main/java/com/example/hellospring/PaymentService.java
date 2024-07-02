@@ -1,8 +1,11 @@
 package com.example.hellospring;
 
+import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Service
 public class PaymentService {
 
 	private final ExRateProvider exRateProvider;
