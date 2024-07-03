@@ -1,6 +1,6 @@
 package com.example.hellospring;
 
-import com.example.hellospring.config.ObjectFactory;
+import com.example.hellospring.config.PaymentConfig;
 import com.example.hellospring.payment.Payment;
 import com.example.hellospring.payment.PaymentService;
 import org.springframework.beans.factory.BeanFactory;
@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Client {
 	public static void main(String[] args) throws Exception {
-		BeanFactory factory = new AnnotationConfigApplicationContext(ObjectFactory.class);
+		BeanFactory factory = new AnnotationConfigApplicationContext(PaymentConfig.class);
 		PaymentService paymentService = factory.getBean(PaymentService.class);
 		Payment payment = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
 		System.out.println("Payment" + payment);

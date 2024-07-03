@@ -1,6 +1,6 @@
 package com.example.hellospring.payment.payment;
 
-import com.example.hellospring.payment.TestObjectFactory;
+import com.example.hellospring.payment.TestPaymentConfig;
 import com.example.hellospring.payment.Payment;
 import com.example.hellospring.payment.PaymentService;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {TestObjectFactory.class})
+@ContextConfiguration(classes = {TestPaymentConfig.class})
 class PaymentServiceTest {
 	
 	@Autowired
