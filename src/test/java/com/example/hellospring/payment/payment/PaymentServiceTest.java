@@ -1,26 +1,30 @@
-package com.example.hellospring.payment;
+package com.example.hellospring.payment.payment;
 
-import com.example.hellospring.exchange.WebApiExRateProvider;
-import jakarta.annotation.PreDestroy;
-import org.assertj.core.api.Assertions;
+import com.example.hellospring.payment.TestObjectFactory;
+import com.example.hellospring.payment.Payment;
+import com.example.hellospring.payment.PaymentService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {TestObjectFactory.class})
 class PaymentServiceTest {
+	
+	@Autowired
+	PaymentService paymentService;
 
 	@Test
 	@DisplayName("prepare 메서드가 요구사항 3가지를 잘 충족했는지 검증한다.")
 	void prepare() throws Exception {
-
-		PaymentService paymentService = new PaymentService(new WebApiExRateProvider());
 
 		Payment payment = paymentService.prepare(100L, "USD", BigDecimal.TEN);
 
