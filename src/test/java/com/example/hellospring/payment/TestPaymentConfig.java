@@ -1,6 +1,5 @@
 package com.example.hellospring.payment;
 
-import com.example.hellospring.exchange.ExRateProvider;
 import com.example.hellospring.payment.exchange.ExRateProviderStub;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
