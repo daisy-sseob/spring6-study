@@ -1,4 +1,4 @@
-package com.example.hellospring.exchange;
+package com.example.hellospring.payment;
 
 import java.math.BigDecimal;
 

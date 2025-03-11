@@ -1,6 +1,6 @@
 package com.example.hellospring.payment.exchange;
 
-import com.example.hellospring.exchange.ExRateProvider;
+import com.example.hellospring.payment.ExRateProvider;
 
 import java.math.BigDecimal;
 
