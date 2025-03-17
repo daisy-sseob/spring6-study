@@ -17,7 +17,7 @@ public class PaymentService {
 		this.clock = clock;
 	}
 
-	public Payment prepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount) throws Exception {
+	public Payment prepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount) {
 
 		BigDecimal exRate = exRateProvider.getExRate(currency);
 		BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exRate);
