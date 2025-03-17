@@ -11,42 +11,46 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.security.interfaces.RSAKey;
 
 @Component
 public class WebApiExRateProvider implements ExRateProvider {
 
   @Override
   public BigDecimal getExRate(String currency) {
-    
-    HttpClient client = HttpClient.newHttpClient();
-    String response;
+    String url = "https://open.er-api.com/v6/latest/" + currency;
+    return runApiForExRate(url);
+  }
 
+  private static BigDecimal runApiForExRate(String url) {
+    String response;
     try {
-      response = client
-          .send(
-              HttpRequest.newBuilder()
-                  .uri(URI.create("https://open.er-api.com/v6/latest/" + currency))
-                  .build(),
-              HttpResponse.BodyHandlers.ofString()
-          )
-          .body();
+      response = executeApi(url);
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
 
     try {
-      
-      ObjectMapper mapper = new ObjectMapper();
-      ExRateData data = mapper.readValue(response, ExRateData.class);
-      System.out.println();
-      System.out.println("API ExRate: " + data.rates().get("KRW"));
-      System.out.println();
-  
-      return data.rates().get("KRW");
+      return extractExRate(response);
     } catch (JsonProcessingException e) {
       throw new RuntimeException(e);
     }
+  }
 
+  private static String executeApi(String url) throws IOException, InterruptedException {
+    return HttpClient.newHttpClient()
+        .send(
+            HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .build(),
+            HttpResponse.BodyHandlers.ofString()
+        )
+        .body();
+  }
+
+  private static BigDecimal extractExRate(String response) throws JsonProcessingException {
+    ObjectMapper mapper = new ObjectMapper();
+    return mapper.readValue(response, ExRateData.class).rates().get("KRW");
   }
 
 }
