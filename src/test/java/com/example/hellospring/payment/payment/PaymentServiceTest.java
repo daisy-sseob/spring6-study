@@ -24,7 +24,7 @@ class PaymentServiceTest {
 
 	@Test
 	@DisplayName("prepare 메서드가 요구사항 3가지를 잘 충족했는지 검증한다.")
-	void prepare() throws Exception {
+	void prepare() {
 
 		Payment payment = paymentService.prepare(100L, "USD", BigDecimal.TEN);
 
