@@ -1,6 +1,5 @@
 package com.example.hellospring.config;
 
-import com.example.hellospring.order.OrderRepository;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
@@ -45,7 +44,7 @@ public class DataSourceConfig {
   }
   
   @Bean
-  public JpaTransactionManager jpaTransactionManager(EntityManagerFactory entityManagerFactory) {
+  public PlatformTransactionManager jpaTransactionManager(EntityManagerFactory entityManagerFactory) {
     return new JpaTransactionManager(entityManagerFactory);
   }
   
