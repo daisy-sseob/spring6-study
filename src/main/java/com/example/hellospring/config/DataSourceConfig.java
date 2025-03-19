@@ -49,9 +49,4 @@ public class DataSourceConfig {
     return new JpaTransactionManager(entityManagerFactory);
   }
   
-  @Bean
-  public OrderRepository orderRepository() {
-    return new OrderRepository();
-  }
-  
 }
