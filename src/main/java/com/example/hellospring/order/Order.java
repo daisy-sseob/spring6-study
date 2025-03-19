@@ -19,6 +19,10 @@ public class Order {
     this.no = no;
     this.total = total;
   }
+  
+  public void updateId(Long id) {
+    this.id = id;
+  }
 
   @Override
   public String toString() {
