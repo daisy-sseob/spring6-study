@@ -1,10 +1,10 @@
 package com.example.hellospring.config;
 
 import com.example.hellospring.data.JdbcOrderRepository;
-import com.example.hellospring.data.JpaOrderRepository;
-import com.example.hellospring.order.Order;
 import com.example.hellospring.order.OrderRepository;
 import com.example.hellospring.order.OrderService;
+import com.example.hellospring.order.OrderServiceImpl;
+import com.example.hellospring.order.OrderServiceTxProxy;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +26,9 @@ public class OrderConfig {
   }
   
   @Bean
-  public OrderService orderService(OrderRepository orderRepository, @Qualifier(value = "jdbcTransactionManager") PlatformTransactionManager jdbcTransactionManager) {
-    return new OrderService(orderRepository, jdbcTransactionManager);
+  public OrderService orderService(OrderRepository orderRepository, PlatformTransactionManager transactionManager) {
+    return new OrderServiceTxProxy(
+        new OrderServiceImpl(orderRepository), transactionManager
+    );
   }
 }

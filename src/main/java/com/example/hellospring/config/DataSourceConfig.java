@@ -44,10 +44,10 @@ public class DataSourceConfig {
     return new PersistenceAnnotationBeanPostProcessor();
   }
   
-  @Bean
-  public PlatformTransactionManager jpaTransactionManager(EntityManagerFactory entityManagerFactory) {
-    return new JpaTransactionManager(entityManagerFactory);
-  }
+//  @Bean
+//  public PlatformTransactionManager jpaTransactionManager(EntityManagerFactory entityManagerFactory) {
+//    return new JpaTransactionManager(entityManagerFactory);
+//  }
   
   @Bean
   public PlatformTransactionManager jdbcTransactionManager(DataSource dataSource) {
